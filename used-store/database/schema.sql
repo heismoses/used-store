@@ -1,8 +1,3 @@
--- ============================================================
--- Used Items Marketplace - Database Schema
--- Compatible with MySQL 5.7+ / MariaDB 10.3+
--- ============================================================
-
 CREATE DATABASE IF NOT EXISTS used_store_marketplace
     CHARACTER SET utf8mb4
     COLLATE utf8mb4_unicode_ci;
