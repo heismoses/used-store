@@ -20,9 +20,8 @@ CREATE TABLE users (
     updated_at      TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- ============================================================
 -- CATEGORIES TABLE
--- ============================================================
+
 CREATE TABLE categories (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     name        VARCHAR(50) NOT NULL UNIQUE,
@@ -31,9 +30,7 @@ CREATE TABLE categories (
     created_at  TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB;
 
--- ============================================================
--- PRODUCTS TABLE
--- ============================================================
+-- PRODUCTS TABLE--
 CREATE TABLE products (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     user_id     INT NOT NULL,
@@ -55,9 +52,8 @@ CREATE TABLE products (
     INDEX idx_date_posted (date_posted)
 ) ENGINE=InnoDB;
 
--- ============================================================
--- PRODUCT IMAGES TABLE
--- ============================================================
+-- PRODUCT IMAGES TABLE--
+
 CREATE TABLE product_images (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     product_id  INT NOT NULL,
@@ -67,9 +63,8 @@ CREATE TABLE product_images (
     FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- ============================================================
 -- MESSAGES TABLE (Chat System)
--- ============================================================
+
 CREATE TABLE messages (
     id              INT AUTO_INCREMENT PRIMARY KEY,
     sender_id       INT NOT NULL,
@@ -84,9 +79,8 @@ CREATE TABLE messages (
     INDEX idx_conversation (sender_id, receiver_id)
 ) ENGINE=InnoDB;
 
--- ============================================================
--- FAVORITES / WISHLIST TABLE
--- ============================================================
+-- FAVORITES / WISHLIST TABLE--
+
 CREATE TABLE favorites (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     user_id     INT NOT NULL,
@@ -97,9 +91,8 @@ CREATE TABLE favorites (
     UNIQUE KEY unique_favorite (user_id, product_id)
 ) ENGINE=InnoDB;
 
--- ============================================================
--- REPORTS TABLE
--- ============================================================
+-- REPORTS TABLE--
+
 CREATE TABLE reports (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     reporter_id INT NOT NULL,
@@ -114,9 +107,8 @@ CREATE TABLE reports (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE SET NULL
 ) ENGINE=InnoDB;
 
--- ============================================================
 -- NOTIFICATIONS TABLE
--- ============================================================
+
 CREATE TABLE notifications (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     user_id     INT NOT NULL,
@@ -129,9 +121,8 @@ CREATE TABLE notifications (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- ============================================================
--- ACTIVITY LOG TABLE
--- ============================================================
+-- ACTIVITY LOG TABLE--
+
 CREATE TABLE activity_log (
     id          INT AUTO_INCREMENT PRIMARY KEY,
     user_id     INT NOT NULL,
@@ -141,9 +132,9 @@ CREATE TABLE activity_log (
     FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 ) ENGINE=InnoDB;
 
--- ============================================================
--- SEED DATA: Categories
--- ============================================================
+
+-- SEED DATA: Categories--
+
 INSERT INTO categories (name, slug, icon) VALUES
     ('Phones',       'phones',       'fa-mobile-alt'),
     ('Electronics',  'electronics',  'fa-laptop'),
